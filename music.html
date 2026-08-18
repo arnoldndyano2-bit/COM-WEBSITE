@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Music - C.O.M</title>
+<audio id="audioPlayer" src="Apostle Temba Asante.mp3"></audio>
+<script>
+function playSong(){
+
+    const player = document.getElementById("audioPlayer");
+
+    if(player.paused){
+        alert("🎵 Music player iko tayari. Tutaunganisha audio yako katika hatua inayofuata.");
+    }else{
+        player.pause();
+    }
+
+}
+</script>
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#0b0b0b;
+    color:white;
+}
+
+header{
+    background:#111;
+    padding:20px;
+    text-align:center;
+    border-bottom:2px solid #d4af37;
+}
+
+header h1{
+    color:#d4af37;
+    margin:0;
+}
+
+nav{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    padding:15px;
+    background:#151515;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    padding:10px 14px;
+    background:#222;
+    border-radius:6px;
+}
+
+nav a:hover{
+    background:#d4af37;
+    color:#000;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+.title{
+    text-align:center;
+}
+
+.title h2{
+    color:#d4af37;
+    font-size:34px;
+}
+
+.search{
+    text-align:center;
+    margin:30px 0;
+}
+
+.search input{
+    width:90%;
+    max-width:500px;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    background:#222;
+    color:white;
+}
+
+.music-list{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.song{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    background:#151515;
+    padding:18px;
+    border-radius:12px;
+    border:1px solid #333;
+}
+
+.cover{
+    width:65px;
+    height:65px;
+    border-radius:10px;
+    background:#222;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+}
+
+.song-info{
+    flex:1;
+}
+
+.song-info h3{
+    margin:0 0 6px;
+    color:#d4af37;
+}
+
+.song-info p{
+    margin:0;
+    color:#aaa;
+}
+
+.play{
+    padding:10px 16px;
+    border:none;
+    border-radius:20px;
+    background:#d4af37;
+    color:#000;
+    font-weight:bold;
+}
+
+.play:hover{
+    background:#fff;
+}
+
+.playlist{
+    margin-top:35px;
+    padding:25px;
+    background:#151515;
+    border-radius:12px;
+    border:1px solid #333;
+}
+
+.playlist h3{
+    color:#d4af37;
+}
+
+footer{
+    margin-top:40px;
+    padding:25px;
+    text-align:center;
+    background:#111;
+    color:#aaa;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>CHRISTIAN ONENESS MINISTRY</h1>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="live.html">Live TV</a>
+<a href="sermons.html">Mahubiri</a>
+<a href="music.html">Music</a>
+<a href="events.html">Events</a>
+<a href="contact.html">Contact</a>
+</nav>
+
+<div class="container">
+
+<div class="title">
+<h2>🎵 Gospel Music</h2>
+
+<p>
+Sikiliza nyimbo za sifa na kuabudu
+kutoka Christian Oneness Ministry.
+</p>
+</div>
+
+<div class="search">
+<input type="text" placeholder="🔎 Tafuta wimbo...">
+</div>
+
+<div class="music-list">
+
+<div class="song">
+
+<div class="cover">🎵</div>
+
+<div class="song-info">
+<h3>Wimbo wa Sifa</h3>
+<p>Christian Oneness Ministry</p>
+</div>
+
+<button class="play" onclick="togglePlay()">▶ Play</button></div>
+
+<div class="song">
+
+<div class="cover">🙏</div>
+
+<div class="song-info">
+<h3>Ibada ya Kweli</h3>
+<p>Worship Collection</p>
+</div>
+
+<button class="play">▶ Play</button>
+
+</div>
+
+<div class="song">
+
+<div class="cover">🔥</div>
+
+<div class="song-info">
+<h3>Nguvu ya Mungu</h3>
+<p>Gospel Revival</p>
+</div>
+
+<button class="play">▶ Play</button>
+
+</div>
+
+</div>
+
+<div class="playlist">
+
+<h3>🎧 Worship Playlist</h3>
+
+<p>
+Playlist ya nyimbo za kuabudu na kumsifu Mungu.
+</p>
+
+<p>▶ Wimbo wa Sifa</p>
+<p>▶ Ibada ya Kweli</p>
+<p>▶ Nguvu ya Mungu</p>
+
+</div>
+
+</div>
+
+<footer>
+
+<p>© 2026 Christian Oneness Ministry</p>
+<p>#kwa yesu hatupoi</p>
+
+</footer>
+
+<div id="musicPlayer" style="
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+background:#111;
+border-top:2px solid #d4af37;
+padding:15px;
+z-index:9999;
+">
+
+<div style="max-width:900px;margin:auto;">
+
+<div style="color:#d4af37;font-weight:bold;margin-bottom:8px;">
+🎵 Apostle Temba Asante
+</div>
+
+<button onclick="togglePlay()" id="mainPlay" style="
+background:#d4af37;
+border:none;
+border-radius:50%;
+width:45px;
+height:45px;
+font-size:18px;
+">
+▶
+</button>
+
+<input
+type="range"
+id="progress"
+value="0"
+min="0"
+max="100"
+style="width:55%;vertical-align:middle;"
+>
+
+<span id="time" style="color:#aaa;">
+0:00
+</span>
+
+<br><br>
+
+<label style="color:#aaa;">
+🔊 Volume
+</label>
+
+<input
+type="range"
+id="volume"
+min="0"
+max="1"
+step="0.01"
+value="1"
+>
+
+</div>
+</div>
+
+<script>
+
+const player = document.getElementById("audioPlayer");
+const progress = document.getElementById("progress");
+const volume = document.getElementById("volume");
+const mainPlay = document.getElementById("mainPlay");
+const time = document.getElementById("time");
+
+function togglePlay(){
+
+    if(player.paused){
+
+        player.play();
+
+        mainPlay.innerHTML = "⏸";
+
+    }else{
+
+        player.pause();
+
+        mainPlay.innerHTML = "▶";
+
+    }
+
+}
+
+player.addEventListener("timeupdate", function(){
+
+    if(player.duration){
+
+        progress.value =
+        (player.currentTime / player.duration) * 100;
+
+        let minutes =
+        Math.floor(player.currentTime / 60);
+
+        let seconds =
+        Math.floor(player.currentTime % 60);
+
+        if(seconds < 10){
+            seconds = "0" + seconds;
+        }
+
+        time.innerHTML =
+        minutes + ":" + seconds;
+
+    }
+
+});
+
+progress.addEventListener("input", function(){
+
+    if(player.duration){
+
+        player.currentTime =
+        (progress.value / 100) * player.duration;
+
+    }
+
+});
+
+volume.addEventListener("input", function(){
+
+    player.volume = volume.value;
+
+});
+
+player.addEventListener("ended", function(){
+
+    mainPlay.innerHTML = "▶";
+
+    progress.value = 0;
+</script></body>
+</html>
+<script>
+function playSong(){
+
+    const player = document.getElementById("audioPlayer");
+
+    if(player.paused){
+        player.play();
+    }else{
+        player.pause();
+    }
+
+}
+</script>

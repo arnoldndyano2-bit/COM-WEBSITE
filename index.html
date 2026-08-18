@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Christian Oneness Ministry | C.O.M</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#080808;
+    color:white;
+}
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(10,10,10,0.96);
+    border-bottom:1px solid #d4af37;
+}
+
+.header-inner{
+    max-width:1200px;
+    margin:auto;
+    padding:16px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-icon{
+    width:45px;
+    height:45px;
+    border:2px solid #d4af37;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#d4af37;
+    font-size:21px;
+}
+
+.logo h1{
+    margin:0;
+    font-size:18px;
+    color:#d4af37;
+}
+
+.logo p{
+    margin:3px 0 0;
+    font-size:11px;
+    color:#aaa;
+}
+
+nav{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:7px;
+}
+
+nav a{
+    color:#eee;
+    text-decoration:none;
+    padding:9px 11px;
+    font-size:14px;
+    border-radius:6px;
+}
+
+nav a:hover{
+    background:#d4af37;
+    color:#000;
+}
+
+.hero{
+    min-height:650px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:70px 20px;
+    background:
+    radial-gradient(circle at center,#30270b 0%,#12100a 35%,#080808 75%);
+}
+
+.hero-content{
+    max-width:900px;
+}
+
+.badge{
+    display:inline-block;
+    padding:8px 16px;
+    border:1px solid #d4af37;
+    border-radius:30px;
+    color:#d4af37;
+    font-size:13px;
+    letter-spacing:1px;
+    margin-bottom:20px;
+}
+
+.hero h2{
+    margin:0;
+    font-size:clamp(38px,7vw,72px);
+    line-height:1.05;
+    color:white;
+}
+
+.hero h2 span{
+    color:#d4af37;
+}
+
+.hero p{
+    max-width:700px;
+    margin:25px auto;
+    color:#ccc;
+    font-size:18px;
+    line-height:1.7;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:30px;
+}
+
+.btn{
+    display:inline-block;
+    padding:14px 24px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.btn-gold{
+    background:#d4af37;
+    color:#000;
+}
+
+.btn-dark{
+    border:1px solid #555;
+    color:white;
+    background:#151515;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+.section{
+    max-width:1200px;
+    margin:auto;
+    padding:75px 20px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.section-title span{
+    color:#d4af37;
+    font-size:13px;
+    letter-spacing:2px;
+}
+
+.section-title h2{
+    font-size:35px;
+    margin:10px 0;
+}
+
+.section-title p{
+    color:#999;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.card{
+    background:linear-gradient(145deg,#171717,#101010);
+    border:1px solid #292929;
+    border-radius:16px;
+    padding:30px;
+    transition:0.3s;
+}
+
+.card:hover{
+    border-color:#d4af37;
+    transform:translateY(-5px);
+}
+
+.card-icon{
+    font-size:35px;
+    margin-bottom:15px;
+}
+
+.card h3{
+    color:#d4af37;
+    margin:10px 0;
+}
+
+.card p{
+    color:#aaa;
+    line-height:1.7;
+}
+
+.live-section{
+    background:linear-gradient(135deg,#17130a,#0b0b0b);
+    border-top:1px solid #222;
+    border-bottom:1px solid #222;
+}
+
+.live-box{
+    max-width:1000px;
+    margin:auto;
+    background:#111;
+    border:1px solid #333;
+    border-radius:18px;
+    padding:35px;
+    text-align:center;
+}
+
+.live-badge{
+    display:inline-block;
+    background:#b00020;
+    padding:8px 16px;
+    border-radius:30px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.live-box h2{
+    color:#d4af37;
+    font-size:35px;
+}
+
+.live-box p{
+    color:#bbb;
+    line-height:1.7;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    text-align:center;
+}
+
+.stat{
+    padding:30px;
+}
+
+.stat strong{
+    display:block;
+    color:#d4af37;
+    font-size:32px;
+}
+
+.stat span{
+    color:#aaa;
+}
+
+.cta{
+    text-align:center;
+    background:#d4af37;
+    color:#000;
+    border-radius:20px;
+    padding:55px 20px;
+}
+
+.cta h2{
+    font-size:35px;
+    margin-top:0;
+}
+
+.cta p{
+    max-width:650px;
+    margin:15px auto 25px;
+    line-height:1.6;
+}
+
+.cta .btn-dark{
+    background:#000;
+    border:none;
+}
+
+footer{
+    background:#050505;
+    border-top:1px solid #222;
+    text-align:center;
+    padding:40px 20px;
+}
+
+footer h3{
+    color:#d4af37;
+}
+
+footer p{
+    color:#777;
+}
+
+.social{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin:20px 0;
+}
+
+.social a{
+    width:40px;
+    height:40px;
+    border:1px solid #333;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    text-decoration:none;
+}
+
+.social a:hover{
+    background:#d4af37;
+    color:#000;
+}
+
+@media(max-width:850px){
+
+    .header-inner{
+        flex-direction:column;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .hero{
+        min-height:580px;
+    }
+
+    nav a{
+        font-size:13px;
+    }
+}
+
+@media(max-width:500px){
+
+    .hero{
+        padding:55px 18px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    .section{
+        padding:55px 18px;
+    }
+
+    .live-box{
+        padding:25px 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="header-inner">
+
+<div class="logo">
+
+<div class="logo-icon">✝</div>
+
+<div>
+<h1>C.O.M</h1>
+<p>CHRISTIAN ONENESS MINISTRY</p>
+</div>
+
+</div>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="live.html">Live</a>
+<a href="sermons.html">Mahubiri</a>
+<a href="music.html">Music</a>
+<a href="events.html">Events</a>
+<a href="prayer.html">Maombi</a>
+<a href="contact.html">Contact</a>
+</nav>
+
+</div>
+
+</header>
+
+
+<section class="hero">
+
+<div class="hero-content">
+
+<div class="badge">
+✦ KARIBU CHRISTIAN ONENESS MINISTRY ✦
+</div>
+
+<h2>
+Imani.<br>
+<span>Upendo.</span><br>
+Umoja katika Kristo.
+</h2>
+
+<p>
+Mahali pa ibada, maombi, Neno la Mungu,
+sifa na kuabudu. Ungana nasi katika safari
+ya kumtafuta Mungu.
+</p>
+
+<div class="buttons">
+
+<a class="btn btn-gold" href="live.html">
+🔴 Tazama C.O.M TV
+</a>
+
+<a class="btn btn-dark" href="prayer.html">
+🙏 Tuma Ombi la Maombi
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-title">
+
+<span>HUDUMA ZETU</span>
+
+<h2>Karibu Katika Uwepo wa Mungu</h2>
+
+<p>
+Gundua huduma mbalimbali za Christian Oneness Ministry.
+</p>
+
+</div>
+
+
+<div class="cards">
+
+<div class="card">
+
+<div class="card-icon">📖</div>
+
+<h3>Neno la Mungu</h3>
+
+<p>
+Sikiliza mafundisho na mahubiri yanayolenga
+kujenga imani na kumsaidia mtu kukua kiroho.
+</p>
+
+<a class="btn btn-dark" href="sermons.html">
+Angalia Mahubiri
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">🙏</div>
+
+<h3>Maombi</h3>
+
+<p>
+Ungana nasi katika maombi na maombezi.
+Tuma ombi lako na usimame katika imani.
+</p>
+
+<a class="btn btn-dark" href="prayer.html">
+Tuma Ombi
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">🎵</div>
+
+<h3>Sifa & Kuabudu</h3>
+
+<p>
+Sikiliza nyimbo za Gospel na Worship
+na kuingia katika mazingira ya sifa na ibada.
+</p>
+
+<a class="btn btn-dark" href="music.html">
+Sikiliza Music
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="live-section">
+
+<div class="section">
+
+<div class="live-box">
+
+<div class="live-badge">
+🔴 C.O.M TV LIVE
+</div>
+
+<h2>Ungana Nasi Moja kwa Moja</h2>
+
+<p>
+Usikose ibada, mahubiri, maombi na vipindi
+vya Christian Oneness Ministry kupitia C.O.M TV.
+</p>
+
+<a class="btn btn-gold" href="live.html">
+▶ Fungua Live TV
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-title">
+
+<span>CHRISTIAN ONENESS MINISTRY</span>
+
+<h2>Huduma Inayogusa Maisha</h2>
+
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<strong>📖</strong>
+<span>Neno la Mungu</span>
+</div>
+
+<div class="stat">
+<strong>🙏</strong>
+<span>Maombi & Maombezi</span>
+</div>
+
+<div class="stat">
+<strong>❤️</strong>
+<span>Upendo & Umoja</span>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="cta">
+
+<h2>#kwa yesu hatupoi</h2>
+
+<p>
+Endelea kuwa nasi katika ibada, maombi,
+mafundisho na huduma mbalimbali za
+Christian Oneness Ministry.
+</p>
+
+<a class="btn btn-dark" href="contact.html">
+📞 Wasiliana Nasi
+</a>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<h3>CHRISTIAN ONENESS MINISTRY</h3>
+
+<p>
+Imani • Upendo • Umoja • Huduma
+</p>
+
+<div class="social">
+
+<a href="contact.html">☎</a>
+<a href="music.html">♪</a>
+<a href="live.html">▶</a>
+<a href="prayer.html">🙏</a>
+
+</div>
+
+<p>© 2026 Christian Oneness Ministry</p>
+
+<p>#kwa yesu hatupoi</p>
+
+</footer>
+
+</body>
+</html>
