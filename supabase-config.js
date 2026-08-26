@@ -1,3 +1,2 @@
 const SUPABASE_URL = "https://umjgletjwjdffwoadhtf.supabase.co";
-const SUPABASE_ANON_KEY = "WEKA_ANON_KEY_YAKO_HAPA";
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVtamdsZXRqd2pkZmZ3b2FkaHRmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc3NTQ0MDMsImV4cCI6MjEwMzMzMDQwM30.uPHbKFCpTBSEYsTRQ8ewKjCEbdp02AuMwM59mVxYC90
+const SUPABASE_ANON_KEY = "sb_publishable_Kl-FesowIP0SOOwbtuQWLQ_I3srIHDd";
