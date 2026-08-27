@@ -240,46 +240,29 @@ return;
 
 const {data,error:loginError} =
 await supabaseClient.auth.signInWithPassword({
-email:email,
-password:password
+  email: email,
+  password: password
 });
 
 if(loginError){
-error.textContent=loginError.message;
-return;
+  error.textContent = "Email au password si sahihi.";
+  return;
 }
 
-showDashboard();
+const {data:profile,error:profileError} =
+await supabaseClient
+  .from("admin_profiles")
+  .select("role")
+  .eq("id", data.user.id)
+  .single();
 
-}
+if(profileError || !profile || profile.role !== "admin"){
+  await supabaseClient.auth.signOut();
+  error.textContent = "Huna ruhusa ya kuingia Admin Dashboard.";
+  return;
 
-async function logout(){
-
-await supabaseClient.auth.signOut();
-
-document.getElementById("dashboard")
-.style.display="none";
-
-document.getElementById("loginBox")
-.style.display="block";
-
-}
-
-async function checkSession(){
-
-const {data} =
-await supabaseClient.auth.getSession();
 
 if(data.session){
-showDashboard();
-}
-
-}
-
-function showDashboard(){
-
-document.getElementById("loginBox")
-.style.display="none";
 
 document.getElementById("dashboard")
 .style.display="block";
