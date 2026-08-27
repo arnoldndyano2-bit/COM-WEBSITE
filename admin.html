@@ -1,217 +1,294 @@
 <!DOCTYPE html>
 <html lang="sw">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>C.O.M Super Admin</title>
-  <link rel="stylesheet" href="admin.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C.O.M Admin Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#080808;
+color:#fff;
+}
+header{
+background:#111;
+border-bottom:1px solid #d4af37;
+padding:18px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+header h1{margin:0;color:#d4af37;font-size:20px}
+header span{color:#aaa;font-size:13px}
+button{
+border:0;
+border-radius:8px;
+padding:12px 18px;
+font-weight:bold;
+cursor:pointer;
+}
+.logout{background:#b00020;color:#fff}
+.container{
+max-width:1200px;
+margin:auto;
+padding:30px 20px;
+}
+.login{
+max-width:420px;
+margin:100px auto;
+background:#151515;
+border:1px solid #333;
+border-radius:16px;
+padding:30px;
+}
+.login h2{text-align:center;color:#d4af37}
+input{
+width:100%;
+padding:14px;
+margin:8px 0 15px;
+background:#0b0b0b;
+border:1px solid #444;
+border-radius:8px;
+color:white;
+}
+.login button{
+width:100%;
+background:#d4af37;
+color:#000;
+}
+.error{
+color:#ff6b6b;
+text-align:center;
+margin-top:15px;
+}
+.dashboard{display:none}
+.welcome{
+background:linear-gradient(135deg,#211b08,#111);
+border:1px solid #3b3218;
+border-radius:16px;
+padding:25px;
+margin-bottom:25px;
+}
+.welcome h2{margin-top:0;color:#d4af37}
+.cards{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:18px;
+}
+.card{
+background:#141414;
+border:1px solid #292929;
+border-radius:14px;
+padding:25px;
+text-align:center;
+}
+.card:hover{border-color:#d4af37}
+.icon{font-size:35px}
+.card h3{color:#d4af37}
+.card p{color:#999;font-size:14px}
+.card button{
+background:#222;
+color:#fff;
+border:1px solid #444;
+}
+@media(max-width:800px){
+.cards{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:500px){
+.cards{grid-template-columns:1fr}
+header{gap:10px}
+}
+</style>
 </head>
 
 <body>
 
-  <div id="loginScreen" class="login-screen">
-    <div class="login-box">
-      <h1>✝ C.O.M</h1>
-      <h2>Super Admin</h2>
-      <p>Ingia kusimamia CHRISTIAN ONENESS MINISTRY</p>
+<header>
+<div>
+<h1>✝ C.O.M ADMIN</h1>
+<span>CHRISTIAN ONENESS MINISTRY</span>
+</div>
+<button class="logout" onclick="logout()">Logout</button>
+</header>
 
-      <form id="loginForm">
-        <input
-          type="email"
-          id="email"
-          placeholder="Admin Email"
-          required
-        >
+<div class="container">
 
-        <input
-          type="password"
-          id="password"
-          placeholder="Password"
-          required
-        >
+<div id="loginBox" class="login">
 
-        <button type="submit">INGIA</button>
+<h2>Admin Login</h2>
 
-        <p id="loginMessage"></p>
-      </form>
-    </div>
-  </div>
+<input id="email" type="email" placeholder="Admin Email">
+
+<input id="password" type="password" placeholder="Password">
+
+<button onclick="login()">INGIA KWENYE ADMIN</button>
+
+<div id="error" class="error"></div>
+
+</div>
 
 
-  <div id="adminApp" class="admin-app hidden">
+<div id="dashboard" class="dashboard">
 
-    <aside class="sidebar">
-      <div class="logo">
-        ✝ C.O.M
-        <span>SUPER ADMIN</span>
-      </div>
+<div class="welcome">
 
-      <nav>
-        <button data-section="dashboard">🏠 Dashboard</button>
-        <button data-section="prayers">🙏 Maombi</button>
-        <button data-section="users">👥 Users</button>
-        <button data-section="music">🎵 Music</button>
-        <button data-section="sermons">🎥 Mahubiri</button>
-        <button data-section="live">📺 Live TV</button>
-        <button data-section="events">📅 Events</button>
-        <button data-section="sadaka">💰 Sadaka</button>
-        <button data-section="messages">📩 Messages</button>
-        <button data-section="community">💬 Community</button>
-        <button data-section="notifications">🔔 Notifications</button>
-        <button data-section="settings">⚙️ Settings</button>
-        <button data-section="admins">👑 Admins</button>
-      </nav>
+<h2>Karibu kwenye Admin Dashboard 👋</h2>
 
-      <button id="logoutBtn" class="logout">🚪 Toka</button>
-    </aside>
+<p>
+Hapa unaweza kusimamia huduma zote za
+CHRISTIAN ONENESS MINISTRY.
+</p>
 
+</div>
 
-    <main class="main">
+<div class="cards">
 
-      <header class="topbar">
-        <div>
-          <h2 id="pageTitle">Dashboard</h2>
-          <p>CHRISTIAN ONENESS MINISTRY</p>
-        </div>
+<div class="card">
+<div class="icon">📅</div>
+<h3>Events</h3>
+<p>Ongeza na simamia matukio.</p>
+<button>Fungua</button>
+</div>
 
-        <div class="admin-info">
-          <span id="adminEmail"></span>
-          <span class="admin-badge">SUPER ADMIN</span>
-        </div>
-      </header>
+<div class="card">
+<div class="icon">📖</div>
+<h3>Mahubiri</h3>
+<p>Simamia mahubiri na mafundisho.</p>
+<button>Fungua</button>
+</div>
 
+<div class="card">
+<div class="icon">🎵</div>
+<h3>Music</h3>
+<p>Ongeza Gospel na Worship.</p>
+<button>Fungua</button>
+</div>
 
-      <section id="dashboard" class="section active">
+<div class="card">
+<div class="icon">🔴</div>
+<h3>Live TV</h3>
+<p>Simamia matangazo ya C.O.M TV.</p>
+<button>Fungua</button>
+</div>
 
-        <div class="welcome">
-          <h1>Karibu kwenye C.O.M Super Admin</h1>
-          <p>
-            Kutoka hapa unasimamia kila sehemu ya website ya
-            CHRISTIAN ONENESS MINISTRY.
-          </p>
-        </div>
+<div class="card">
+<div class="icon">🙏</div>
+<h3>Maombi</h3>
+<p>Angalia maombi yaliyotumwa.</p>
+<button>Fungua</button>
+</div>
 
-        <div class="stats">
+<div class="card">
+<div class="icon">💰</div>
+<h3>Sadaka</h3>
+<p>Simamia taarifa za michango.</p>
+<button>Fungua</button>
+</div>
 
-          <div class="card">
-            <span>🙏</span>
-            <h3>Maombi</h3>
-            <strong id="prayerCount">0</strong>
-          </div>
+<div class="card">
+<div class="icon">👥</div>
+<h3>Users</h3>
+<p>Simamia waumini na members.</p>
+<button>Fungua</button>
+</div>
 
-          <div class="card">
-            <span>👥</span>
-            <h3>Users</h3>
-            <strong id="userCount">0</strong>
-          </div>
+<div class="card">
+<div class="icon">⚙️</div>
+<h3>Settings</h3>
+<p>Mipangilio ya website.</p>
+<button>Fungua</button>
+</div>
 
-          <div class="card">
-            <span>🎵</span>
-            <h3>Music</h3>
-            <strong id="musicCount">0</strong>
-          </div>
+</div>
 
-          <div class="card">
-            <span>🎥</span>
-            <h3>Mahubiri</h3>
-            <strong id="sermonCount">0</strong>
-          </div>
+</div>
 
-          <div class="card">
-            <span>📅</span>
-            <h3>Events</h3>
-            <strong id="eventCount">0</strong>
-          </div>
+</div>
 
-          <div class="card">
-            <span>📩</span>
-            <h3>Messages</h3>
-            <strong id="messageCount">0</strong>
-          </div>
+<script src="supabase-config.js"></script>
 
-        </div>
+<script>
 
-        <div class="admin-panel">
-          <h2>⚡ Quick Actions</h2>
+const supabaseClient =
+window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_ANON_KEY
+);
 
-          <div class="quick-actions">
-            <button data-section="prayers">🙏 Angalia Maombi</button>
-            <button data-section="events">📅 Manage Events</button>
-            <button data-section="sermons">🎥 Manage Mahubiri</button>
-            <button data-section="music">🎵 Manage Music</button>
-            <button data-section="users">👥 Manage Users</button>
-            <button data-section="settings">⚙️ Website Settings</button>
-          </div>
-        </div>
+async function login(){
 
-      </section>
+const email =
+document.getElementById("email").value.trim();
 
+const password =
+document.getElementById("password").value;
 
-      <section id="prayers" class="section">
-        <h1>🙏 Maombi</h1>
-        <div class="empty-state">
-          <h2>Prayer Requests</h2>
-          <p>Maombi yote ya website yataonekana hapa.</p>
-          <p class="coming">Database connection in preparation...</p>
-        </div>
-      </section>
+const error =
+document.getElementById("error");
 
+error.textContent="";
 
-      <section id="users" class="section">
-        <h1>👥 Users</h1>
-        <div class="empty-state">
-          <h2>Website Users</h2>
-          <p>Watumiaji waliosajiliwa watasimamiwa hapa.</p>
-        </div>
-      </section>
+if(!email || !password){
+error.textContent="Jaza email na password.";
+return;
+}
 
+const {data,error:loginError} =
+await supabaseClient.auth.signInWithPassword({
+email:email,
+password:password
+});
 
-      <section id="music" class="section">
-        <h1>🎵 Music</h1>
-        <div class="empty-state">
-          <h2>Music Management</h2>
-          <p>Ongeza, hariri au futa nyimbo hapa.</p>
-        </div>
-      </section>
+if(loginError){
+error.textContent=loginError.message;
+return;
+}
 
+showDashboard();
 
-      <section id="sermons" class="section">
-        <h1>🎥 Mahubiri</h1>
-        <div class="empty-state">
-          <h2>Sermon Management</h2>
-          <p>Simamia mahubiri na video hapa.</p>
-        </div>
-      </section>
+}
 
+async function logout(){
 
-      <section id="live" class="section">
-        <h1>📺 Live TV</h1>
-        <div class="empty-state">
-          <h2>Live TV Management</h2>
-          <p>Simamia live stream ya C.O.M TV hapa.</p>
-        </div>
-      </section>
+await supabaseClient.auth.signOut();
 
+document.getElementById("dashboard")
+.style.display="none";
 
-      <section id="events" class="section">
-        <h1>📅 Events</h1>
-        <div class="empty-state">
-          <h2>Events Management</h2>
-          <p>Ongeza na hariri matukio ya kanisa.</p>
-        </div>
-      </section>
+document.getElementById("loginBox")
+.style.display="block";
 
+}
 
-      <section id="sadaka" class="section">
-        <h1>💰 Sadaka</h1>
-        <div class="empty-state">
-          <h2>Sadaka Management</h2>
-          <p>Simamia taarifa za sadaka hapa.</p>
-        </div>
-      </section>
+async function checkSession(){
 
+const {data} =
+await supabaseClient.auth.getSession();
 
-      <section id="messages" class="section">
-        <h1>📩 Messages</h1>
-        <div class="empty-state">
-          <h2>Contact Messages</h2>
+if(data.session){
+showDashboard();
+}
+
+}
+
+function showDashboard(){
+
+document.getElementById("loginBox")
+.style.display="none";
+
+document.getElementById("dashboard")
+.style.display="block";
+
+}
+
+checkSession();
+
+</script>
+
+</body>
+</html>
